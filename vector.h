@@ -65,16 +65,16 @@ do { \
 #define vector_grow(vec, count) \
 do { \
 	if(!(vec)) { \
-		size_t *__p = malloc((count) * sizeof(*(vec)) + (sizeof(size_t) * 2)); \
-		assert(__p); \
-		(vec) = (void *)(&__p[2]); \
+		size_t *_p_ = malloc((count) * sizeof(*(vec)) + (sizeof(size_t) * 2)); \
+		assert(_p_); \
+		(vec) = (void *)(&_p_[2]); \
 		vector_set_capacity((vec), (count)); \
 		vector_set_size((vec), 0); \
 	} else { \
-		size_t *__p1 = &((size_t *)(vec))[-2]; \
-		size_t *__p2 = realloc(__p1, ((count) * sizeof(*(vec))+ (sizeof(size_t) * 2))); \
-		assert(__p2); \
-		(vec) = (void *)(&__p2[2]); \
+		size_t *_p1_ = &((size_t *)(vec))[-2]; \
+		size_t *_p2_ = realloc(_p1_, ((count) * sizeof(*(vec))+ (sizeof(size_t) * 2))); \
+		assert(_p2_); \
+		(vec) = (void *)(&_p2_[2]); \
 		vector_set_capacity((vec), (count)); \
 	} \
 } while(0)
@@ -98,11 +98,11 @@ do { \
 #define vector_erase(vec, i) \
 do { \
 	if (vec) { \
-		size_t __sz = vector_size(vec); \
-		if ((i) < __sz) { \
-			vector_set_size((vec), __sz - 1); \
+		size_t _sz_ = vector_size(vec); \
+		if ((i) < _sz_) { \
+			vector_set_size((vec), _sz_ - 1); \
 			size_t x; \
-			for (x = i; x < (__sz - 1); ++x) { \
+			for (x = i; x < (_sz_ - 1); ++x) { \
 				(vec)[x] = (vec)[x + 1]; \
 			} \
 			(i)--; \
@@ -134,8 +134,8 @@ do { \
 #define vector_swap(vec, i, j, T) \
 do { \
 	if(vec) { \
-		size_t __sz = vector_size(vec); \
-		if((i) < __sz && (j) < __sz) { \
+		size_t _sz_ = vector_size(vec); \
+		if((i) < _sz_ && (j) < _sz_) { \
 			SWAP((vec)[i], (vec)[j], T); \
 		} \
 	} \
@@ -169,9 +169,9 @@ do { \
 
 #define vector_push_back(vec, value) \
 do { \
-	size_t __cap = vector_capacity(vec); \
-	if(__cap <= vector_size(vec)) { \
-		vector_grow((vec), !__cap ? __cap + 1 : __cap * 2); \
+	size_t _cap_ = vector_capacity(vec); \
+	if(_cap_ <= vector_size(vec)) { \
+		vector_grow((vec), !_cap_ ? _cap_ + 1 : _cap_ * 2); \
 	} \
 	vec[vector_size(vec)] = (value); \
 	vector_set_size((vec), vector_size(vec) + 1); \
@@ -181,11 +181,11 @@ do { \
 
 #define vector_push_back(vec, value) \
 do { \
-	size_t __cap = vector_capacity(vec); \
-	if(__cap <= vector_size(vec)) { \
-		vector_grow((vec), __cap + 1); \
+	size_t _cap_ = vector_capacity(vec); \
+	if(_cap_ <= vector_size(vec)) { \
+		vector_grow((vec), _cap_ + 1); \
 	} \
-	vec[vector_size(vec)] = (value); \
+	(vec)[vector_size(vec)] = (value); \
 	vector_set_size((vec), vector_size(vec) + 1); \
 } while(0)
 

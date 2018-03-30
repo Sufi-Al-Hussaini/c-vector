@@ -100,8 +100,8 @@ do { \
 	if (vec) { \
 		size_t _sz_ = vector_size(vec); \
 		if ((i) < _sz_) { \
-			vector_set_size((vec), _sz_ - 1); \
 			size_t _x_; \
+			vector_set_size((vec), _sz_ - 1); \
 			for (_x_ = i; _x_ < (_sz_ - 1); ++_x_) { \
 				(vec)[_x_] = (vec)[_x_ + 1]; \
 			} \

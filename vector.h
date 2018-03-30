@@ -101,9 +101,9 @@ do { \
 		size_t _sz_ = vector_size(vec); \
 		if ((i) < _sz_) { \
 			vector_set_size((vec), _sz_ - 1); \
-			size_t x; \
-			for (x = i; x < (_sz_ - 1); ++x) { \
-				(vec)[x] = (vec)[x + 1]; \
+			size_t _x_; \
+			for (_x_ = i; _x_ < (_sz_ - 1); ++_x_) { \
+				(vec)[_x_] = (vec)[_x_ + 1]; \
 			} \
 			(i)--; \
 		} \
